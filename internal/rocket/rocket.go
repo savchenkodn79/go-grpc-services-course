@@ -1,3 +1,5 @@
+//go:generate mockgen -destination=rocket_mock_test.go -package=rocket github.com/savchenkodn79/go-grpc-services-course/internal/rocket Store
+
 package rocket
 
 import "context"
@@ -51,7 +53,7 @@ func (s Service) InsertRocket(ctx context.Context, rkt Rocket) (Rocket, error) {
 }
 
 // DeleteRocket - deletes a rocket from our inventory
-func (s Service) DeleteRocket(ctx context.Context, id string) error {
+func (s Service) DeleteRocket(id string) error {
 	err := s.Store.DeleteRocket(id)
 	if err != nil {
 		return err
